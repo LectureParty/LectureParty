@@ -69,7 +69,7 @@ html {
     z-index: 0;
 }
 
-.lecture-info {
+.content-left {
     text-align: center;
     display: flex;
     align-items: center;
@@ -135,7 +135,7 @@ html {
 }
 
 
-.scheduler {
+.content-right {
     text-align: center;
     display: flex;
     align-items: center;
