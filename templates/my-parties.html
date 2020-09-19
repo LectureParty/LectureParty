@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}My Parties{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class='content'>
+    <div class='box-display'>
+        <h1 class='content-title'>Profile</h1>
+        <h2 class='username'>Username: <div class='reg'>{{ g.user['username']}}</div></h2>
+        <button class='button'>Change Password</button>
+        <button class='button'>Log Out</button>
+    </div>
+    <div class='box-display myparties'>
+        <h1 class='content-title'>My Parties</h1>
+        <div class='scrollmenu'>
+            <div class='lecture-line'>
+                <p class='lecture-line-content'><b>Name:</b> UCLA CS 31</p>
+                <p class='lecture-line-content'><b>Code:</b> passcode</p>
+                <button class='join-button'>join</button>
+            </div>
+
+
+            <div class='lecture-line'>
+                <p class='lecture-line-content'><b>Name:</b> UCLA CS 32</p>
+                <p class='lecture-line-content'><b>Code:</b> passcode</p>
+                <button class='join-button'>join</button>
+            </div>
+            <div class='lecture-line'>
+                <p class='lecture-line-content'><b>Name:</b> UCLA CS 33</p>
+                <p class='lecture-line-content'><b>Code:</b> passcode</p>
+                <button class='join-button'>join</button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

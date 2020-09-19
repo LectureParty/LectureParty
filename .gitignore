@@ -2,8 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.pkl
 # C extensions
+nohup.out
 *.so
 
 # Distribution / packaging
