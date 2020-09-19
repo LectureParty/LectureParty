@@ -40,6 +40,7 @@ html {
 }
 
 .navbar-button {
+    font-weight: 500;
     font-size: 24px;
     font-family: 'Poppins', sans-serif;
     height: 75px;
@@ -176,4 +177,60 @@ html {
     margin: 20px;
     padding: 200px 150px 200px 150px;
     background: gray;
+}
+
+
+/* stuff for my-parties */
+
+.username {
+    font-weight: 600;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+    background: #f1f1f1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.lecture-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.lecture-line:hover {
+    background: #e0e0e0;
+}
+
+.lecture-line-content {
+    font-size: 24px;
+    margin: 10px 0px 10px 0px;
+}
+
+.join-button {
+    background: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    margin: 5px;
+    padding: 0 20px 0 20px;
+}
+.join-button:hover {
+    background: #e1fce2;
+}
+.join-button:focus {
+    outline: none;
+}
+
+.myparties {
+    width: 50%;
+}
+
+b {
+    font-weight: 600;
 }
