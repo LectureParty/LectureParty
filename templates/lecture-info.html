@@ -10,8 +10,32 @@
     <h1 class='title'>LectureParty</h1>
     <h2 class='description'>Watching Online Lectures, Together</h2>
     <div class='options'>
-        <button class='navbar-button'>Join Party</button>
-        <button class='navbar-button' href="lecture_info">Create Party</button>
+        <button class='navbar-button' onclick='switchJoinParty()'>Join Party</button>
+        <div class='dropdown joinparty' id='joinparty'>
+            <div class='dropdown-container'>
+                <div class='warning'>*warning here*</div>
+                <form class='form'>
+                    <label for='join-name'>Name: </label>
+                    <input type='text' id='join-name' name='join-name'><br>
+                    <label for='join-code'>Code: </label>
+                    <input type='text' id='join-code' name='join-code'><br>
+                    <input type='submit' value='submit'>
+                </form>
+            </div>
+        </div>
+        <button class='navbar-button' onclick='switchCreateParty()'>Create Party</button>
+        <div class='dropdown createparty' id='createparty'>
+            <div class='dropdown-container'>
+                <div class='warning'>*warning here*</div>
+                <form class='form'>
+                    <label for='create-name'>Name: </label>
+                    <input type='text' id='create-name' name='create-name'><br>
+                    <label for='create-code'>Code: </label>
+                    <input type='text' id='create-code' name='create-code'><br>
+                    <input type='submit' value='submit'>
+                </form>
+            </div>
+        </div>
         <button class='navbar-button' href='my_parties'>My Parties</button>
     </div>
 </div>

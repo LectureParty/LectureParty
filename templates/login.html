@@ -5,20 +5,33 @@
 {% endblock %}
 
 {% block content %}
-<form action='auth' name="login-form" method="post">
-    <div class='navbar'>
-        <img class='logo' src="{{ url_for('static', filename='lectureparty-logo.svg')}}"></img>
-        <h1 class='title'>LectureParty</h1>
-        <h2 class='description'>Watching Online Lectures, Together</h2>
-    </div>
-    <div class='content'>
+<div class='navbar'>
+    <img class='logo' src="{{ url_for('static', filename='lectureparty-logo.svg')}}"></img>
+    <h1 class='title'>LectureParty</h1>
+    <h2 class='description'>Watching Online Lectures, Together</h2>
+</div>
+<div class='content'>
+    <form action='auth' name="login-form" method="post">
         <div class='box-display'>
             <h1 class='content-title'>Login</h1>
-            <label class='username-label'>Username: <input id='login-input' name="username" placeholder="Username" required></label>
-            <label class='password-label'>Password: <input id='login-input' name="password" placeholder="Password" required></label>
+            <label class='username-label'>Username: <input id='username-input' name="username" placeholder="Username" required></label>
+            <label class='password-label'>Password: <input type='password' id='password-input' name="password" placeholder="Password" required></label>
+            <div>
+                <input type="checkbox" onclick="togglePassword()"> Show Password
+            </div>
             <input type='submit' class='button' value='Login'>
             <a href="create_account" class="change-login">If you don't have an account yet, click here to make one!</a>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+<script>
+    function togglePassword() {
+      var x = document.getElementById("password-input");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+</script>
 {% endblock %}
