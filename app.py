@@ -54,11 +54,6 @@ def update_pw():
 def create_account():
     return render_template('create-account.html')
 
-# dedlet this
-@app.route('/testest')
-def party_html_test():
-    return render_template('party.html')
-
 @app.route('/create',methods=['POST'])
 def create():
     u=request.form['username']
@@ -76,8 +71,10 @@ def new_party():
     name=request.forms['party_name']
     pw=request.forms['party_pwd']
     rooms['name']=pw
+
 @app.route('/party/<int:party_id>')
 def party(party_id):
     return render_template('party.html',**{'roomnumber': party_id, 'username': session['username']})
+
 if __name__ == '__main__':
     socketio.run(app, debug=True)

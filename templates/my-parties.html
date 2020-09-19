@@ -39,7 +39,7 @@
 <div class='content'>
     <div class='box-display'>
         <h1 class='content-title'>Profile</h1>
-        <h2 class='username'>Username: <div class='reg'>{{ g.user['username']}}</div></h2>
+        <h2 class='username'>Username: <div class='reg'>{{username}}</div></h2>
         <button class='button' onclick='displayChangePassword()'>Change Password</button>
             <form action='update_password' id="change-password-form" method="post" style='display:none'>
                 <label>New Password: </label>
@@ -55,23 +55,13 @@
     <div class='box-display myparties'>
         <h1 class='content-title'>My Parties</h1>
         <div class='scrollmenu'>
+            {% for room in rooms %}
             <div class='lecture-line'>
-                <p class='lecture-line-content'><b>Name:</b> UCLA CS 31</p>
-                <p class='lecture-line-content'><b>Code:</b> passcode</p>
+                <p class='lecture-line-content'><b>Name:</b> {{ room.name }}</p>
+                <p class='lecture-line-content'><b>Code:</b> {{ room.code }}</p>
                 <button class='join-button'>join</button>
             </div>
-
-
-            <div class='lecture-line'>
-                <p class='lecture-line-content'><b>Name:</b> UCLA CS 32</p>
-                <p class='lecture-line-content'><b>Code:</b> passcode</p>
-                <button class='join-button'>join</button>
-            </div>
-            <div class='lecture-line'>
-                <p class='lecture-line-content'><b>Name:</b> UCLA CS 33</p>
-                <p class='lecture-line-content'><b>Code:</b> passcode</p>
-                <button class='join-button'>join</button>
-            </div>
+            {% endfor %}
 
 
 
