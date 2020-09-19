@@ -61,7 +61,6 @@ html {
 }
 .navbar-button:focus {
     outline: none;
-    background: #ececec;
 }
 
 .content {
@@ -274,11 +273,45 @@ b {
 
 /* stuff for dropdown */
 
+/* stuff for dropdown */
+
 .dropdown {
     display: none;
-    position: absolute;
+    position: fixed;
     background: white;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 10;
+    top: 77px;
+    border-radius: 0 0 10px 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.joinparty {
+    margin-left: -178px;
+}
+
+.show {
+    display: block;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.warning {
+    color: darkred;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+input {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    margin: 5px;
 }
