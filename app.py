@@ -21,7 +21,7 @@ app.register_blueprint(chat)
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template('my-parties.html')
+        return render_template('my-parties.html',{'username':session['username']})
     else:
         return render_template('login.html')
 
