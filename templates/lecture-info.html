@@ -42,9 +42,10 @@
         <div class='participants'>
             <h2 id='participants'>Participants:</h2>
             <div class='participants-list'>
-                <p class='sample-participant'>participant 1</p>
-                <p class='sample-participant'>participant 2</p>
-                <p class='sample-participant'>participant 3</p>
+                {% for participant in participants %}
+                    <p class='sample-participant'>{{participant}}</p>
+                {% endfor %}
+                
             </div>
         </div>
         <button class='button startparty'>Start Party</button>
