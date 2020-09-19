@@ -28,13 +28,6 @@
                 <form class='form'  method='post' action='new_party'>
                     <label for='create-name'>Lecture ID: </label>
                     <input type='text' id='create-name' name='create-name'><br>
-                    <label for='create-dates'>Possible Dates: </label>
-                    <input type='text' name='create-dates' class='form-control pull-right'><br>
-                    <script>
-                        $(function() {
-                            $("input[name='create-dates']").daterangepicker({ startDate: moment(), endDate: moment().add(2, 'day')});
-                        })
-                    </script>
                     <input type='submit' value='submit'>
                 </form>
             </div>
