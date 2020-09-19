@@ -89,12 +89,13 @@ def new_party():
 @app.route('/join_party',methods=['POST'])
 def join_party():
     code=request.form['join-code']
+    
     if code in rooms:
         rbu[session['username']].append(code)
         pickle.dump(db,open('data.pkl','wb'))
         return redirect(url_for('party',party_id=code))
     else:
-        return 'Room not found'
+        return db
 
 @app.route('/party/<int:party_id>')
 def party(party_id):
