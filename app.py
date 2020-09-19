@@ -54,6 +54,11 @@ def update_pw():
 def create_account():
     return render_template('create-account.html')
 
+# dedlet this
+@app.route('/testest')
+def party_html_test():
+    return render_template('party.html')
+
 @app.route('/create',methods=['POST'])
 def create():
     u=request.form['username']
