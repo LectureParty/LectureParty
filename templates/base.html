@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <title>{% block title %}{% endblock %} - Lecture Party</title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <div class='navbar'>
+            <div class='logo'></div>
+            <h1 class='title'>LectureParty</h1>
+            <h2 class='description'>Watching Online Lectures, Together</h2>
+            <div class='options'>
+                <button class='navbar-button'>Join Party</button>
+                <button class='navbar-button'>Create Party</button>
+                <button class='navbar-button'>My Parties</button>
+            </div>
+        </div>
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+</html>

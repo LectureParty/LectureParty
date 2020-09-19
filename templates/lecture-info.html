@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Lecture Info{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class='content'>
+    <div class='lecture-info'>
+        <h1 class='content-title'>Lecture Name</h1>
+        <h2 class='lecture-code'>Code: <div class='reg'>passcode</div></h2>
+        <div class='participants'>
+            <h2 id='participants'>Participants:</h2>
+            <div class='participants-list'>
+                <p class='sample-participant'>participant 1</p>
+                <p class='sample-participant'>participant 2</p>
+                <p class='sample-participant'>participant 3</p>
+            </div>
+        </div>
+        <button class='lecture-button startparty'>Start Party</button>
+        <button class='lecture-button'>Party Notes</button>
+    </div>
+    <div class='scheduler'>
+        <h1 class='content-title'>Scheduler</h1>
+        <h2 class='scheduled-time'>This party is scheduled to be on: <input id='date-input' type='datetime-local'></input></h2>
+        <div class='interactive'>
+            <div class='calendar'>
+                interactive calendar goes here
+            </div>
+            <div class='time-chart'>
+                interactive chart goes here
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
