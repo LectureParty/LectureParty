@@ -13,8 +13,8 @@ def sessions():
     return render_template('session.html')
 
 def messageReceived(methods=['GET', 'POST']):
-    print('message was received!!!')
+    print('chat was received!!!')
 
-@socketio.on('my event')
+@socketio.on('chat event')
 def handle_chat_send(json, methods=['GET', 'POST']):
-    socketio.emit('my response', json, callback=messageReceived)
+    socketio.emit('chat response', json, callback=messageReceived)
