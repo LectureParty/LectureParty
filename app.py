@@ -79,7 +79,7 @@ def create():
     
 @app.route('/new_party',methods=['POST'])
 def new_party():
-    name=request.forms['create-name']
+    name=request.form['create-name']
     room_id=random.randint(10**9,9*(10**9))
     rbu[session['username']].append(room_id)
     rooms[room_id]=name
@@ -88,7 +88,7 @@ def new_party():
 
 @app.route('/join_party',methods=['POST'])
 def join_party():
-    code=request.forms['join-code']
+    code=request.form['join-code']
     if code in rooms:
         rbu[session['username']].append(code)
         pickle.dump(db,open('data.pkl','wb'))
