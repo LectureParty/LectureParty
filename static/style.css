@@ -70,7 +70,7 @@ html {
     z-index: 0;
 }
 
-.content-left {
+.box-display {
     text-align: center;
     display: flex;
     align-items: center;
@@ -133,18 +133,6 @@ html {
 .startparty {
     padding-left: 13px;
     padding-right: 13px;
-}
-
-
-.content-right {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background: white;
-    padding: 0px 30px 20px 30px;
-    border-radius: 20px;
-    box-shadow: -5px 5px 5px -5px rgba(0, 0, 0, .2);
 }
 
 .scheduled-time {
@@ -233,4 +221,30 @@ html {
 
 b {
     font-weight: 600;
+}
+
+/* stuff for login */
+
+.username-label {
+    font-size: 1.5em;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+}
+
+.password-label {
+    font-size: 1.5em;
+    margin: 10px 0px 0px 8px;
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+}
+
+#login-input {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
+    width: 200px;
 }
