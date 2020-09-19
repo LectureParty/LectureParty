@@ -1,10 +1,14 @@
 from flask import *
 from flask_socketio import SocketIO
 import pickle
-
-db=pickle.load(open('data.pkl','rb'))
+db={}
+try:
+    db=pickle.load(open('data.pkl','rb'))
+except:
+    db={'users': dict()}
+users=db['users']
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
-app.secret_key='aj34$&8@j!#PO!@#$'
+app.secret_key='aj34$&8@j!#PO!G@#$'
 socketio = SocketIO(app)
 
 
@@ -30,8 +34,8 @@ def login():
 def auth():
     u=request.form['username']
     p=request.form['password'] 
-    if u in db:
-        if db[u]==p:
+    if u in users:
+        if users[u]==p:
             session['username']=u
             return redirect(url_for('index'))
     else:
@@ -45,13 +49,16 @@ def create_account():
 def create():
     u=request.form['username']
     p=request.form['password'] 
-    if u in db:
+    if u in users:
         return redirect(url_for('create_account',error=True))
     else:
-        db[u]=p
+        users[u]=p
         session['username']=u
         pickle.dump(db,open('data.pkl','wb'))
         return redirect(url_for('index'))
-
+    
+@app.route('/new_party')
+def new_party():
+    pass
 if __name__ == '__main__':
     socketio.run(app, debug=True)
