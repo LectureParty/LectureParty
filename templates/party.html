@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Lecture Party{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class-'jitsi-embed' id='jitsi-parent'>
+</div>
+
+<style>
+.jitsi-embed {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script src='https://meet.jit.si/external_api.js'></script>
+<script>
+let parent_node = document.getElementById('jitsi-parent')
+let jitsi_options = {
+    parentNode: parent_node,
+    roomName: 'aaaaaa',
+    //roomName: '{{roomnumber}}',
+    width: '100%',
+    height: '40em',
+    userInfo: {
+        //displayName: '{{username}}'
+        displayName: 'Aneesh'
+    },
+}
+let jitsi_api = new JitsiMeetExternalAPI("meet.jit.si", jitsi_options)
+
+let local_user_id = null
+
+jitsi_api.addListener('videoConferenceJoined', 
+    ({roomName: room_name, id: user_id, displayName: display_name, avatarURL: url}) => {
+        local_user_id = user_id
+    }
+)
+
+jitsi_api.addListener('incomingMessage', ({from: id, nick: name, message: message}) => {
+    console.log(id, name, message)
+})
+
+jitsi_api.addListener('outgoingMessage', ({message: message}) => {
+    console.log("sent message: ", message)
+    if (message === "!startRecording") {
+        console.log("Started Recording")
+        jitsi_api.executeCommand('startRecording', {
+            mode: 'file',
+            dropboxtoken: '6XGVKLKCyTsAAAAAAAAAAQMcJkZHQdpEJnRFUDPbwj2V_SO7lNOKg1uYC8AT8AkD',
+        })
+        jitsi_api.executeCommand('setLargeVideoParticipant', local_user_id)
+    }
+    if (message === "!stopRecording") {
+        jitsi_api.executeCommand('stopRecording', 'file')
+    }
+})
+</script>
+{% endblock %}
