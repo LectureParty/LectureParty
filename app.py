@@ -22,13 +22,33 @@ def index():
 def test(path):
     return render_template(path)
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 @app.route('/auth',methods=['POST'])
 def auth():
-    return request.form
+    u=request.form['username']
+    p=request.form['password'] 
+    if u in db:
+        if db[u]=p:
+            session['username']=u
 
-@app.route('/create_account',methods=['POST'])
+@app.route('/create_account')
+def create_account():
+    return render_template('create-account.html')
+
+@app.route('/create',methods=['POST'])
 def create():
-    return request.form
+    u=request.form['username']
+    p=request.form['password'] 
+    if u in db:
+        return redirect(url_for('create_account',exists=True))
+    else:
+        db[u]=p
+        session['username']=u
+        pickle.dump(db,open('data.pkl','wb'))
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
