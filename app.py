@@ -31,8 +31,9 @@ def auth():
     u=request.form['username']
     p=request.form['password'] 
     if u in db:
-        if db[u]=p:
+        if db[u]==p:
             session['username']=u
+            return redirect(url_for('index'))
 
 @app.route('/create_account')
 def create_account():
