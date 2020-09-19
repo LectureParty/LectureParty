@@ -43,6 +43,12 @@ def auth():
             return redirect(url_for('index'))
     else:
         return redirect(url_for('login',error=True))
+    
+@app.route('/update_password',methods=['POST'])
+def update_pw():
+    p=request.form['password'] 
+    users[session['username']]=p
+    return redirect(url_for('index'))
 
 @app.route('/create_account')
 def create_account():
