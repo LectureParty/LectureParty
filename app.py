@@ -95,7 +95,7 @@ def join_party():
         pickle.dump(db,open('data.pkl','wb'))
         return redirect(url_for('party',party_id=code))
     else:
-        return db
+        return (db, rooms, code)
 
 @app.route('/party/<int:party_id>')
 def party(party_id):
