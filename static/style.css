@@ -28,7 +28,7 @@ html {
 }
 
 .title {
-    margin: 0px 10px 0px 10px;
+    margin: 0px 20px 0px 10px;
     font-size: 36px;
     color: black;
 }
@@ -46,8 +46,8 @@ html {
 }
 
 .navbar-button {
-    font-weight: 500;
     font-size: 24px;
+    font-weight: 500;
     font-family: 'Poppins', sans-serif;
     height: 75px;
     margin: 0;
@@ -264,6 +264,15 @@ b {
     font-weight: 600;
 }
 
+.change-password-button {
+    font-family: 'Poppins', sans-serif;
+    margin: 2px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px #999;
+}
+
 /* stuff for login */
 
 .username-label {
@@ -282,7 +291,15 @@ b {
     font-weight: 600;
 }
 
-#login-input {
+#username-input {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
+    width: 200px;
+}
+
+#password-input {
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     margin: 0px 5px 0px 5px;
@@ -294,8 +311,6 @@ b {
     font-size: 13px;
     margin: 0;
 }
-
-/* stuff for dropdown */
 
 /* stuff for dropdown */
 
