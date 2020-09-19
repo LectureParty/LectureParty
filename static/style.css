@@ -119,15 +119,20 @@ html {
     margin: 10px;
     padding: 8px;
     background: #f1f1f1;
-    /*border: 2px solid #859e86;*/
     border: none;
     border-radius: 10px;
+    box-shadow: 0 6px #999;
 }
 .button:hover {
     background: #e0e0e0;
 }
 .button:focus {
     outline: none;
+}
+.button:active {
+    background: #e0e0e0;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
 }
 
 .startparty {
@@ -207,12 +212,19 @@ html {
     font-size: 24px;
     margin: 5px;
     padding: 0 20px 0 20px;
+    box-shadow: 0 6px #999;
+    margin-bottom: 10px;
 }
 .join-button:hover {
     background: #e1fce2;
 }
 .join-button:focus {
     outline: none;
+}
+.join-button:active {
+    background: #e1fce2;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
 }
 
 .myparties {
