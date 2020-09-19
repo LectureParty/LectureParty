@@ -77,7 +77,7 @@ def create():
         pickle.dump(db,open('data.pkl','wb'))
         return redirect(url_for('index'))
     
-@app.route('/new_party')
+@app.route('/new_party',methods=['POST'])
 def new_party():
     name=request.forms['create-name']
     room_id=random.randint(10**9,9*(10**9))
@@ -85,7 +85,7 @@ def new_party():
     rooms[room_id]=name
     return redirect(url_for('party',party_id=room_id))
 
-@app.route('/join_party')
+@app.route('/join_party',methods=['POST'])
 def join_party():
     code=request.forms['join-code']
     if code in rooms:
