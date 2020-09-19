@@ -13,7 +13,10 @@ app.register_blueprint(chat)
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    if 'username' in session:
+        return render_template('lecture-info.html')
+    else:
+        return render_template('login.html')
 
 @app.route('/test/<path:path>')
 def test(path):
