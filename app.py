@@ -98,9 +98,10 @@ def join_party():
         return 'Code must be a number'
     
     if code in rooms:
-        rbu[session['username']].append(code)
-        ubr[code].append(session['username'])
-        pickle.dump(db,open('data.pkl','wb'))
+        if code not in rbu[session['username']]:
+            rbu[session['username']].append(code)
+            ubr[code].append(session['username'])
+            pickle.dump(db,open('data.pkl','wb'))
         return redirect(url_for('party',party_id=code))
     else:
         return 'Code not found'
