@@ -11,8 +11,8 @@
     <h2 class='description'>Watching Online Lectures, Together</h2>
     <div class='options'>
         <button class='navbar-button'>Join Party</button>
-        <button class='navbar-button'>Create Party</button>
-        <button class='navbar-button'>My Parties</button>
+        <button class='navbar-button' href="lecture_info">Create Party</button>
+        <button class='navbar-button' href='my_parties' id='current'>My Parties</button>
     </div>
 </div>
 <div class='content'>
@@ -20,7 +20,7 @@
         <h1 class='content-title'>Profile</h1>
         <h2 class='username'>Username: <div class='reg'>{{ g.user['username']}}</div></h2>
         <button class='button'>Change Password</button>
-        <button class='button'>Log Out</button>
+        <button class='button' href='log_out'>Log Out</button>
     </div>
     <div class='box-display myparties'>
         <h1 class='content-title'>My Parties</h1>
