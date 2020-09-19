@@ -63,6 +63,11 @@ html {
     outline: none;
 }
 
+#current {
+    background: #949494;
+    color: #f2f2f2;
+}
+
 .content {
     text-align: center;
     display: flex;
@@ -209,7 +214,9 @@ html {
 .lecture-line {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .lecture-line:hover {
     background: #e0e0e0;
@@ -217,7 +224,14 @@ html {
 
 .lecture-line-content {
     font-size: 24px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 40px 10px 0px;
+    
+}
+
+.code-and-join {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
 }
 
 .join-button {

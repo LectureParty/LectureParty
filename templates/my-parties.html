@@ -57,8 +57,10 @@
             {% for room in rooms %}
             <div class='lecture-line'>
                 <p class='lecture-line-content'><b>Name:</b> {{ room.name }}</p>
-                <p class='lecture-line-content'><b>Code:</b> {{ room.code }}</p>
-                <button class='join-button'>join</button>
+                <div class='code-and-join'>
+                    <p class='lecture-line-content'><b>Code:</b> {{ room.code }}</p>
+                    <button class='join-button'>join</button>
+                </div>
             </div>
             {% endfor %}
 
