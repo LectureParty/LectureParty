@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 import pickle
 from chat import chat
 
-db=pickle.load(open('data.pkl','r'))
+db=pickle.load(open('data.pkl','rb'))
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key='aj34$&8@j!#PO!@#$'
 socketio = SocketIO(app)
