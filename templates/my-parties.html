@@ -58,7 +58,7 @@
             <div class='lecture-line'>
                 <p class='lecture-line-content'><b>Name:</b> {{ room.name }}</p>
                 <p class='lecture-line-content'><b>Code:</b> {{ room.code }}</p>
-                <button class='join-button'>join</button>
+                <a href='/party/{{room.code}}'><button class='join-button'>join</button></a>
             </div>
             {% endfor %}
 
