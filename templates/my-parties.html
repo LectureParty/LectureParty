@@ -14,7 +14,7 @@
         <div class='dropdown joinparty' id='joinparty'>
             <div class='dropdown-container'>
                 <div class='warning'>*warning here*</div>
-                <form class='form'>
+                <form class='form' method='post' action='join_party'>
                     <label for='join-name'>Name: </label>
                     <input type='text' id='join-name' name='join-name'><br>
                     <label for='join-code'>Code: </label>
@@ -27,7 +27,7 @@
         <div class='dropdown createparty' id='createparty'>
             <div class='dropdown-container'>
                 <div class='warning'>*warning here*</div>
-                <form class='form'>
+                <form class='form' method='post' action='new_party'>
                     <label for='create-name'>Name: </label>
                     <input type='text' id='create-name' name='create-name'><br>
                     <label for='create-code'>Code: </label>
@@ -42,7 +42,6 @@
 <div class='content'>
     <div class='box-display'>
         <h1 class='content-title'>Profile</h1>
-<<<<<<< HEAD
         <h2 class='username'>Username: <div class='reg'>{{ g.user['username']}}</div></h2>
         <button class='button' onclick='displayChangePassword()'>Change Password</button>
             <form action='update_password' id="change-password-form" method="post" style='display:none'>
@@ -54,10 +53,6 @@
                 <br>
                 <button class='change-password-button'>Submit</button>
             </form>
-=======
-        <h2 class='username'>Username: <div class='reg'>{{ username }}</div></h2>
-        <button class='button'>Change Password</button>
->>>>>>> 7934b503fc360c81fa982b477dbec65d408b9250
         <button class='button' href='log_out'>Log Out</button>
     </div>
     <div class='box-display myparties'>
