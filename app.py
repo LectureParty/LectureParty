@@ -27,7 +27,10 @@ app.register_blueprint(chat)
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template('my-parties.html',**{'username':session['username']})
+        tmp=list()
+        for roomid in rbu[session['username']]:
+            tmp.append({'name':rooms[roomid],'code':roomid})
+        return render_template('my-parties.html',**{'username':session['username'],'rooms':tmp})
     else:
         return render_template('login.html')
 
@@ -80,6 +83,14 @@ def new_party():
     room_id=random.randint(10**9,9*(10**9))
     rbu[session['username']].append(room_id)
     rooms[room_id]=name
+    return redirect(url_for('party',party_id=room_id))
+
+@app.route('/join_party')
+def join_party():
+    code=request.forms['join-code']
+    if code in rooms:
+        rbu[session['username']].append(room_id)
+    return redirect(url_for('party',party_id=code))
 
 @app.route('/party/<int:party_id>')
 def party(party_id):
