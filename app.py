@@ -83,14 +83,16 @@ def new_party():
     room_id=random.randint(10**9,9*(10**9))
     rbu[session['username']].append(room_id)
     rooms[room_id]=name
+    pickle.dump(db,open('data.pkl','wb'))
     return redirect(url_for('party',party_id=room_id))
 
 @app.route('/join_party',methods=['POST'])
 def join_party():
     code=request.forms['join-code']
     if code in rooms:
-        rbu[session['username']].append(room_id)
-    return redirect(url_for('party',party_id=code))
+        rbu[session['username']].append(code)
+        pickle.dump(db,open('data.pkl','wb'))
+        return redirect(url_for('party',party_id=code))
 
 @app.route('/party/<int:party_id>')
 def party(party_id):
