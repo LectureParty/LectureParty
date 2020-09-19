@@ -70,6 +70,7 @@ def create():
 def new_party():
     name=request.forms['party_name']
     pw=request.forms['party_pwd']
+    rooms['name']=pw
 @app.route('/party/<int:party_id>')
 def party(party_id):
     return render_template('party.html',{id:party_id, })
