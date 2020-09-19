@@ -1,8 +1,7 @@
 from flask import *
 from flask_socketio import SocketIO
-from app import app
+from app import socketio
 
-socketio = SocketIO(app)
 chat = Blueprint('simple_page', __name__, template_folder='templates')
 
 @chat.route('/chattest/test')
