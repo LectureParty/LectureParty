@@ -177,6 +177,16 @@ html {
     background: gray;
 }
 
+.scheduler {
+    position: relative;
+    top: -120px;
+}
+
+.left {
+    position: relative;
+    width: 300px;
+}
+
 
 /* stuff for my-parties */
 
