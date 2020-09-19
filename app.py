@@ -100,7 +100,7 @@ def party(party_id):
         return 'Room not found.'
 
 @app.route('/partymeet/<int:party_id>')
-def party(party_id):
+def partymeet(party_id):
     return render_template('party.html',**{'roomnumber':party_id, 'username': session['username']})
 
 if __name__ == '__main__':
