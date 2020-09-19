@@ -93,6 +93,8 @@ def join_party():
         rbu[session['username']].append(code)
         pickle.dump(db,open('data.pkl','wb'))
         return redirect(url_for('party',party_id=code))
+    else:
+        return 'Room not found'
 
 @app.route('/party/<int:party_id>')
 def party(party_id):
