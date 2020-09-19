@@ -78,6 +78,6 @@ def new_party():
     rooms['name']=pw
 @app.route('/party/<int:party_id>')
 def party(party_id):
-    return render_template('party.html',**{roomnumber:party_id, username: session['username']})
+    return render_template('party.html',**{'roomnumber:party_id, username: session['username']})
 if __name__ == '__main__':
     socketio.run(app, debug=True)
