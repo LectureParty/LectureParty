@@ -10,14 +10,39 @@
     <h1 class='title'>LectureParty</h1>
     <h2 class='description'>Watching Online Lectures, Together</h2>
     <div class='options'>
-        <button class='navbar-button'>Join Party</button>
-        <button class='navbar-button' href="lecture_info">Create Party</button>
+        <button class='navbar-button' onclick='switchJoinParty()'>Join Party</button>
+        <div class='dropdown joinparty' id='joinparty'>
+            <div class='dropdown-container'>
+                <div class='warning'>*warning here*</div>
+                <form class='form'>
+                    <label for='join-name'>Name: </label>
+                    <input type='text' id='join-name' name='join-name'><br>
+                    <label for='join-code'>Code: </label>
+                    <input type='text' id='join-code' name='join-code'><br>
+                    <input type='submit' value='submit'>
+                </form>
+            </div>
+        </div>
+        <button class='navbar-button' onclick='switchCreateParty()'>Create Party</button>
+        <div class='dropdown createparty' id='createparty'>
+            <div class='dropdown-container'>
+                <div class='warning'>*warning here*</div>
+                <form class='form'>
+                    <label for='create-name'>Name: </label>
+                    <input type='text' id='create-name' name='create-name'><br>
+                    <label for='create-code'>Code: </label>
+                    <input type='text' id='create-code' name='create-code'><br>
+                    <input type='submit' value='submit'>
+                </form>
+            </div>
+        </div>
         <button class='navbar-button' href='my_parties' id='current'>My Parties</button>
     </div>
 </div>
 <div class='content'>
     <div class='box-display'>
         <h1 class='content-title'>Profile</h1>
+<<<<<<< HEAD
         <h2 class='username'>Username: <div class='reg'>{{ g.user['username']}}</div></h2>
         <button class='button' onclick='displayChangePassword()'>Change Password</button>
             <form action='update_password' id="change-password-form" method="post" style='display:none'>
@@ -29,6 +54,10 @@
                 <br>
                 <button class='change-password-button'>Submit</button>
             </form>
+=======
+        <h2 class='username'>Username: <div class='reg'>{{ username }}</div></h2>
+        <button class='button'>Change Password</button>
+>>>>>>> 7934b503fc360c81fa982b477dbec65d408b9250
         <button class='button' href='log_out'>Log Out</button>
     </div>
     <div class='box-display myparties'>

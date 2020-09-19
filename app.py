@@ -4,9 +4,12 @@ import pickle
 db={}
 try:
     db=pickle.load(open('data.pkl','rb'))
+    
 except:
-    db={'users': dict()}
+    db={'users': dict(),'rooms':dict()}
 users=db['users']
+rooms=db['rooms']
+
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key='aj34$&8@j!#PO!G@#$'
 socketio = SocketIO(app)
@@ -18,7 +21,7 @@ app.register_blueprint(chat)
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template('lecture-info.html')
+        return render_template('my-parties.html',**{'username':session['username']})
     else:
         return render_template('login.html')
 
@@ -40,6 +43,12 @@ def auth():
             return redirect(url_for('index'))
     else:
         return redirect(url_for('login',error=True))
+    
+@app.route('/update_password',methods=['POST'])
+def update_pw():
+    p=request.form['password'] 
+    users[session['username']]=p
+    return redirect(url_for('index'))
 
 @app.route('/create_account')
 def create_account():
@@ -59,6 +68,10 @@ def create():
     
 @app.route('/new_party')
 def new_party():
-    pass
+    name=request.forms['party_name']
+    pw=request.forms['party_pwd']
+@app.route('/party/<int:party_id>')
+def party(party_id):
+    return render_template('party.html',{id:party_id, })
 if __name__ == '__main__':
     socketio.run(app, debug=True)
