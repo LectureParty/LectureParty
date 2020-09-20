@@ -1,6 +1,5 @@
 ![image](./static/banner.png)
 
-## Introduction
 Tired of watching pre-recorded online lectures on your own? You're not alone. Students all over the world are struggling to adjust to asynchronous learning this year in the wake of the COVID-19 pandemic. It requires a lot of self-discipline to watch lectures by yourself, especially without your classmates and real-time interaction to motivate you.
 
 **LectureParty offers a way for you to watch lectures with your classmates! Not only can you video call and get to know each other while preparing for class, you can also chat and take notes together.**
@@ -17,4 +16,4 @@ Once the party has started, you will be able to watch the lecture together with 
 
 ### Collaborative Notes
 
-The chat box in our video call service serves as a collaborative nottaking tool. LectureParty stores every message in the chat box, so **all of the notes you and your friends take during the call will be accessible anytime!** On top of that, **every chat will be marked with a time-stamp**, making it easy to find the point of reference within the lecture.
+The chat box in our video call service serves as a collaborative notetaking tool. LectureParty stores every message in the chat box, so **all of the notes you and your friends take during the call will be accessible anytime!** On top of that, **every chat will be marked with a time-stamp**, making it easy to find the point of reference within the lecture.
