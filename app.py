@@ -171,8 +171,9 @@ def date_info():
     arr=content['arr']
     cnt=lec_times[room]
     lec_times[room]=scheduler(arr,cnt)
+    pickle.dump(db,open('data.pkl','wb'))
     return str(list(cnt.most_common(1)[0][0]))
-
+    
 @app.route('/log_out')
 def logout():
     session.clear()
@@ -182,6 +183,7 @@ def logout():
 def review_lecture(roomnumber):
     messages = db['lectures'][roomnumber][1]
     roomname = db['rooms'][roomnumber]
+    pickle.dump(db,open('data.pkl','wb'))
     return render_template('review_lecture.html', **{'roomname':roomname, 'messages':messages})
 
 def scheduler(bigArray, cnt=None):
