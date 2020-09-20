@@ -1,4 +1,4 @@
-from Collections import Counter
+from collections import Counter
 
 def scheduler(bigArray, cnt=None):
     if cnt == None:
@@ -7,4 +7,4 @@ def scheduler(bigArray, cnt=None):
         if i != 0:
             for j in range(len(bigArray[i])):
                 cnt[(i, j)] += 1
-    return cnt.most_common()
+    return cnt
