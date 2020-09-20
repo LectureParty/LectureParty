@@ -245,9 +245,8 @@
         xmlhttp = new XMLHttpRequest;
         xmlhttp.open( "POST", "/date_info");
         xmlhttp.setRequestHeader( "Content-Type", "application/json" );
-        var sendData={"room":{{code}},"arr":bigArray}
-        JSON.stringify(sendData)
-        xmlhttp.send(sendData); 
+        var sendData={"room":{{code}},"arr":bigArray};
+        xmlhttp.send(JSON.stringify(sendData)); 
 
         
     }
