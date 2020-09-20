@@ -9,13 +9,18 @@
     <h1 class='title'>LectureParty</h1>
     <h2 class='description'>Watching Online Lectures, Together</h2>
 </div>
-<div class='content'>
-	Lecture {{roomnumber}} review
+
+<div style='text-align: center'>
+	<h2>{{roomname}} review</h2>
+	<br>
 	{% for timestamp, message, image in messages %}
-		{{timestamp}} {{message}} 
-	<script>
-		console.log('{{image}}')
-	</script>
+		<div style='text-align: center'> 
+			{{timestamp}} 
+			<br>
+			{{message}} 
+		</div>
+		<img src='{{image}}'/>
+		<br>
 	{% endfor %}
 </div>
 {% endblock %}
