@@ -13,7 +13,7 @@ Upon creating a new 'party' or joining an existing one, you will be able to inpu
 
 ### Video Call
 
-Once the party has started, you will be able to watch the lecture together with your friends via our video call service. **You can freely discuss the lecture material with your friends as if you were in a small, intimate, in-person lecture!**
+Once the party has started, you will be able to watch the lecture together with your friends via our video call service. **You can freely discuss the video material with your friends as if you were in a small, intimate, in-person lecture!**
 
 ### Collaborative Notes
 
