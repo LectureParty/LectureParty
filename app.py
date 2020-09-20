@@ -3,8 +3,7 @@ from flask_socketio import SocketIO
 import pickle
 import random
 from datetime import datetime
-from collections import Counter
-import scheduler
+
 
 db={}
 users,rooms,rbu,ubr,lectures,lec_times=None,None,None,None,None,None
@@ -155,7 +154,7 @@ def date_info():
     room=content['room']
     arr=content['arr']
     cnt=lec_times[room]
-    scheduler.scheduler(arr,cnt)
+    scheduler(arr,cnt)
     return set(cnt.most_common(1)[0])
 
 @app.route('/log_out')
@@ -168,5 +167,18 @@ def review_lecture(roomnumber):
     messages = db['lectures'][roomnumber][1]
     return render_template('review_lecture.html', **{'roomnumber':roomnumber, 'messages':messages})
 
+def scheduler(bigArray, cnt=None):
+    if cnt == None:
+        cnt = Counter()
+    for i in range(len(bigArray)):
+        if bigArray[i] != 0:
+            for j in range(len(bigArray[i])):
+                cnt[(i, j)] += 1
+    return cnt
+
+
 if __name__ == '__main__':
     socketio.run(app, debug=True)
+    
+    
+    
