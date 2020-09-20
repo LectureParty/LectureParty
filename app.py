@@ -2,29 +2,31 @@ from flask import *
 from flask_socketio import SocketIO
 import pickle
 import random
+from datetime import datetime
+
 db={}
-users,rooms,rbu,ubr=None,None,None,None
+users,rooms,rbu,ubr,lectures=None,None,None,None,None
 try:
     db=pickle.load(open('data.pkl','rb'))
     users=db['users']
     rooms=db['rooms']
     rbu=db['rooms_by_user']
     ubr=db['users_by_room']
+    lectures=db['lectures']
 except:
-    db={'users': dict(),'rooms':dict(),'rooms_by_user':dict(),'users_by_room':dict()}
+    db={'users': dict(),'rooms':dict(),'rooms_by_user':dict(),'users_by_room':dict(), 'lectures':dict()}
     users=db['users']
     rooms=db['rooms']
     rbu=db['rooms_by_user']
     ubr=db['users_by_room']
+    lectures=db['lectures']
 
+# lectures[roomID] = (start_time, [(timestamp, message, screenshot)])
 
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
-app.secret_key='aj34$&8@j!#PO!G@#$'
+app.secret_key='aj34$&8@j!#PO!Gw#$'
 socketio = SocketIO(app)
 
-
-from chat import chat
-app.register_blueprint(chat)
 
 @app.route('/')
 def index():
@@ -116,6 +118,30 @@ def party(party_id):
 @app.route('/partymeet/<int:party_id>')
 def partymeet(party_id):
     return render_template('party.html',**{'roomnumber':party_id, 'username': session['username']})
+
+@app.route('/addScreenshot', methods=['POST'])
+def add_sc():
+    image_data = request.form.get('img')
+    roomID = request.form.get('roomID')
+    message = request.form.get('message')
+    current_time = datetime.now()
+
+    if roomID in db['lectures']:
+        start_time, messages = db['lectures'][roomID]
+        messages.append((current_time - start_time, message, image_data))
+
+    print(messages)
+    return '200'
+
+@app.route('/meetingStart', methods=['POST'])
+def set_meeting_start():
+    roomID = request.form.get('roomID')
+    start_time = datetime.now()
+
+    db['lectures'][int(roomID)] = (start_time, [])
+    print(db['lectures'])
+
+    return '200'
 
 @app.route('/log_out')
 def logout():
