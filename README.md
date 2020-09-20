@@ -1,4 +1,4 @@
-![image](./static/banner.png)
+![image](./static/banner-big.png)
 
 Tired of watching pre-recorded online lectures on your own? You're not alone. Students all over the world are struggling to adjust to asynchronous learning this year in the wake of the COVID-19 pandemic. It requires a lot of self-discipline to watch lectures by yourself, especially without your classmates and real-time interaction to motivate you.
 
