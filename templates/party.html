@@ -55,24 +55,43 @@
 
 <script src='https://meet.jit.si/external_api.js'></script>
 <script>
+const username = '{{username}}' 
+const roomID = '{{roomnumber}}' 
+
 let parent_node = document.getElementById('jitsi-parent')
 let jitsi_options = {
     parentNode: parent_node,
-    roomName: '{{roomnumber}}',
+    roomName: roomID,
     width: '60%',
     height: '400px',
     userInfo: {
-        displayName: '{{username}}'
+        displayName: username,
     },
 }
+
 let jitsi_api = new JitsiMeetExternalAPI("mikail-khan.com", jitsi_options)
 
 let local_user_id = null
 
+let videoStream = null
+let vidTag = document.createElement('video')
+let canvas = document.createElement('canvas')
+
+function startCapture(displayMediaOptions) {
+    let captureStream = null;
+
+    return navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+        .catch(err => { console.error("Error:" + err); return null; });
+}
+
 jitsi_api.addListener('videoConferenceJoined', 
+    console.log("capturing screen")
     ({roomName: room_name, id: user_id, displayName: display_name, avatarURL: url}) => {
         local_user_id = user_id
     }
+
+    videoStream = startCapture()
+    vidTag.srcObject = videoStream 
 )
 
 jitsi_api.addListener('incomingMessage', ({from: id, nick: name, message: message}) => {
@@ -83,15 +102,25 @@ jitsi_api.addListener('outgoingMessage', ({message: message}) => {
     console.log("sent message: ", message)
     if (message === "!startRecording") {
         console.log("Started Recording")
-        jitsi_api.executeCommand('startRecording', {
-            mode: 'file',
-            dropboxtoken: '6XGVKLKCyTsAAAAAAAAAAQMcJkZHQdpEJnRFUDPbwj2V_SO7lNOKg1uYC8AT8AkD',
-        })
         jitsi_api.executeCommand('setLargeVideoParticipant', local_user_id)
+
+        // send start time to flask server
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('POST', '/meetingStart', true)
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhttp.send(`roomID=${roomID}`)
+    } else if (message === "!stopRecording") {
+        // ¯\_(ツ)_/¯
     }
-    if (message === "!stopRecording") {
-        jitsi_api.executeCommand('stopRecording', 'file')
-    }
+
+    jitsi_api.captureLargeVideoScreenshot().then(dataURL => {
+        console.log("screenshot taken")
+        // send screenshot to server w/ username, room id, etc.
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('POST', '/addScreenshot', true)
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhttp.send(`roomID=${roomID}&message=${message}&img=${dataURL}`)
+    })
 })
 </script>
 {% endblock %}
