@@ -140,7 +140,17 @@ def add_sc():
 
     if roomID in db['lectures']:
         start_time, messages = db['lectures'][roomID]
-        messages.append(((current_time - start_time).strftime('%H:%M:%S'), message, image_data))
+
+        timediff = (current_time - start_time).seconds
+        hours = timediff // 3600
+        minutes = (timediff % 3600) // 60
+        seconds = timediff % 60
+        if seconds < 10:
+            seconds = '0' + str(seconds)
+        if minutes < 10:
+            minutes = '0' + str(minutes)
+        timestamp = f"{hours}:{minutes}:{seconds}"
+        messages.append((timestamp, message, image_data))
     pickle.dump(db,open('data.pkl','wb'))
     print('message received')
     return '200'
@@ -185,7 +195,6 @@ def scheduler(bigArray, cnt=None):
     print(cnt)
     print(bigArray)
     return cnt
-
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
