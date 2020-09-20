@@ -481,3 +481,14 @@ input {
 .arrow-left {
     padding: 9px 8px 9px 2px;
 }
+
+/* review-lecture */
+.hor {
+    display: flex;
+    flex-direction: row;
+}
+
+.ver {
+    display: flex;
+    flex-direction: column;
+}

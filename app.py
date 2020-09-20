@@ -140,7 +140,7 @@ def add_sc():
 
     if roomID in db['lectures']:
         start_time, messages = db['lectures'][roomID]
-        messages.append((current_time - start_time, message, image_data))
+        messages.append(((current_time - start_time).strftime('%H:%M:%S'), message, image_data))
     pickle.dump(db,open('data.pkl','wb'))
     print('message received')
     return '200'
