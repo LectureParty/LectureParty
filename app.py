@@ -159,7 +159,8 @@ def add_sc():
 def set_meeting_start():
     roomID = int(request.form.get('roomID'))
     start_time = datetime.now()
-    db['lectures'][roomID] = (start_time, [])
+    if roomID not in db['lectures']:
+        db['lectures'][roomID] = (start_time, [])
     pickle.dump(db,open('data.pkl','wb'))
     print('recording start')
     return '200'
