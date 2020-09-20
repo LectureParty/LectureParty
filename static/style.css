@@ -195,12 +195,11 @@ html {
 
 .scheduler {
     position: relative;
-    top: -117px;
+    top: -104px;
 }
 
 #confirm-date {
     margin-top: 10px;
-    margin-left: 137px;
 }
 
 #available-dates {
