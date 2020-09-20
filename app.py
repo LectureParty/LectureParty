@@ -117,7 +117,11 @@ def join_party():
 @app.route('/party/<int:party_id>')
 def party(party_id):
     if party_id in rooms:
-        return render_template('lecture-info.html',**{'name': rooms[party_id], 'code': party_id,'participants':ubr[party_id]})
+        if len(lec_times[party_id].most_common())>0:
+            date,time=cnt.most_common(1)[0][0]
+            return render_template('lecture-info.html',**{'name': rooms[party_id], 'code': party_id,'participants':ubr[party_id],'date':date,'time':time})
+        else:
+            return render_template('lecture-info.html',**{'name': rooms[party_id], 'code': party_id,'participants':ubr[party_id]})
     else:
         return 'Room not found.'
 
