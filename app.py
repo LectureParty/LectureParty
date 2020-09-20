@@ -5,7 +5,7 @@ import random
 from datetime import datetime
 
 from OpenSSL import SSL
-context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
+context = SSL.Context(SSL.TLSv1_2_METHOD)
 context.use_privatekey_file('/home/ec2-user/keys/key.pem')
 context.use_certificate_file('/home/ec2-user/keys/cert.pem')
 
