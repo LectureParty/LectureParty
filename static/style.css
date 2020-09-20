@@ -203,6 +203,7 @@ html {
 }
 
 .scrollmenu {
+    overflow: auto;
     white-space: nowrap;
     background: #f1f1f1;
     width: 100%;
@@ -256,7 +257,7 @@ html {
 }
 
 .myparties {
-    width: 50%;
+    width: 60%;
 }
 
 b {
