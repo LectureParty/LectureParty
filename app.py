@@ -4,11 +4,6 @@ import pickle
 import random
 from datetime import datetime
 
-from OpenSSL import SSL
-context = SSL.Context(SSL.TLSv1_2_METHOD)
-context.use_privatekey_file('/home/ec2-user/keys/key.pem')
-context.use_certificate_file('/home/ec2-user/keys/cert.pem')
-
 db={}
 users,rooms,rbu,ubr,lectures=None,None,None,None,None
 try:
