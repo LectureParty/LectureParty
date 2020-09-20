@@ -178,13 +178,11 @@ html {
 
 .time-chart {
     margin: 20px;
-    padding: 200px 150px 200px 150px;
-    background: gray;
 }
 
 .scheduler {
     position: relative;
-    top: -120px;
+    top: -171px;
 }
 
 .left {
@@ -355,6 +353,43 @@ input {
     margin: 5px;
 }
 
+/* time scheduler */
+
+.subtitle {
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.times-display {
+    text-align: center;
+    display: grid;
+    align-items: center;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto;
+    background: white;
+    padding: 0;
+    border-radius: 20px;
+}
+
+.time-button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    margin: 1px 10px;
+    padding: 2px 4px;
+    background: #f1f1f1;
+    border: 1px #4eca7f;
+    border-style: solid;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.time-button:hover {
+    background: #e0e0e0;
+}
+.time-button1:hover {
+    background: #e0e0e0;
+}
+
 /* stuff for party.html */
 
 .jitsipage {
@@ -381,4 +416,33 @@ input {
 
 .full {
     width: 100%;
+}
+
+/* arrow buttons */
+
+.arrowbutton {
+    border-radius: 50px;
+    background: #f1f1f1;
+    border: none;
+    box-shadow: 0 6px #999;
+}
+.arrowbutton:hover {
+    background: #e0e0e0;
+}
+.arrowbutton:focus {
+    outline: none;
+}
+.arrowbutton:active {
+    background: #e0e0e0;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
+}
+
+.arrow-right {
+    transform: rotate(180deg);
+    padding: 8px 8px 10px 2px;
+}
+
+.arrow-left {
+    padding: 9px 8px 9px 2px;
 }
