@@ -489,7 +489,11 @@ input {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 40px;
-    width: 1000px;
+    width: 800px;
+}
+
+.spaceleft {
+    margin-left: 50px;
 }
 
 .ver {
