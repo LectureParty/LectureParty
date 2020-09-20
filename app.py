@@ -135,7 +135,7 @@ def add_sc():
     if roomID in db['lectures']:
         start_time, messages = db['lectures'][roomID]
         messages.append((current_time - start_time, message, image_data))
-    #pickle.dump(db,open('data.pkl','wb'))
+    pickle.dump(db,open('data.pkl','wb'))
     print('message received')
     return '200'
 
@@ -163,7 +163,7 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/review_lecture/<int:roomnumber>')
-def review_lecture():
+def review_lecture(roomnumber):
     messages = db['lectures'][roomnumber][1]
     return render_template('review_lecture.html', **{'roomnumber':roomnumber, 'messages':messages})
 
