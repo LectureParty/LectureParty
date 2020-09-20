@@ -354,3 +354,31 @@ input {
     font-family: 'Poppins', sans-serif;
     margin: 5px;
 }
+
+/* stuff for party.html */
+
+.jitsipage {
+    position: fixed;
+    width: 100%;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.jitsi-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 0 10px 0;
+}
+
+.jitsi-title {
+    margin: 0 0 10px 0;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.full {
+    width: 100%;
+}
