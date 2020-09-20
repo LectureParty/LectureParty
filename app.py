@@ -184,7 +184,7 @@ def review_lecture(roomnumber):
     messages = db['lectures'][roomnumber][1]
     roomname = db['rooms'][roomnumber]
     pickle.dump(db,open('data.pkl','wb'))
-    return render_template('review_lecture.html', **{'roomname':roomname, 'messages':messages})
+    return render_template('review_lecture.html', **{'roomname':roomname, 'messages':messages,'room':roomnumber})
 
 def scheduler(bigArray, cnt=None):
     if cnt == None:
