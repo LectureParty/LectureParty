@@ -144,7 +144,7 @@ def set_meeting_start():
     print(db['lectures'])
     return '200'
 
-@app.route('/date_info')
+@app.route('/date_info', methods=['POST'])
 def date_info():
     content=request.get_json()
     print(content)
