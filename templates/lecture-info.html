@@ -70,8 +70,8 @@
                 </div>
             </div>
         </div>
-        <button class='button' id='submit-datetime' onclick='submitEverything()'>Submit Date and Time</button>
-        <h2 class='scheduled-time'>This party is scheduled to be on: <b id='dateandtime'>Date and Time</b></h2>
+        <button class='button' id='submit-datetime' onclick='submitEverything()'>Submit Date and Times</button>
+        <h2 class='scheduled-time'>This party is scheduled to begin: <b id='dateandtime'>Date and Time</b></h2>
     </div>
 </div>
 <script>
@@ -249,6 +249,32 @@
         xmlhttp.send(JSON.stringify(sendData)); 
 
         
+    }
+    
+    function convert(date, time) {
+        let converted = '';
+        if (date < 10) {
+            converted += '09/2' + date.toString() + '/2020';
+        }
+        else {
+            converted += '09/30/2020';
+        }
+        converted += ", ";
+        if (time == 0) {
+            converted += "12:00 AM";
+        }
+        else if (time < 12) {
+            converted += time.toString() + ":00 AM";
+        }
+        else if (time == 12) {
+            converted += "12:00 PM";
+        }
+        else if (time < 24) {
+            converted += (time-12).toString() + ":00 PM";
+        }
+        else {
+            converted += "error";
+        }
     }
 </script>
 {% endblock %}
