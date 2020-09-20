@@ -55,21 +55,22 @@
         <h1 class='content-title' id='scheduler'>Scheduler</h1>
         <div class='interactive'>
             <div class='scheduler'>
-                <h1 class='content-title subtitle'>Available Dates</h1>
-                <p>Select an available day: </p>
-                <input type='text' id='datepicker' class='left' name='date'>
+                <h1 class='content-title subtitle' id='available-dates'>Available Dates</h1>
+                <label for='datepicker'>Select an available day: </label><br>
+                <input type='text' id='datepicker' class='left' name='date' placeholder='click to add a new date'><br>
+                <button class='button small' id='confirm-date'>Confirm Date</button>
             </div>
             <div class='time-chart'>
-                <form action='times' name="time-form" method="post">
-                    <h1 class='content-title subtitle'>Available Times</h1>
-                    <p>What times are you available on 9/19/20?</p>
-                    <div class='times-display' id='times-display'>
-                    </div>
-                    <input type='submit' class='button' value='Submit'>
-                </form>
+                <h1 class='content-title subtitle'>Available Times</h1>
+                <div>
+                    <label id='time-picker'>What times are you available on 9/20/20?</label>
+                    <div class='times-display' id='times-display'></div>
+                    <button class='button small'>Confirm Time</button>
+                </div>
             </div>
         </div>
-        <h2 class='scheduled-time'>This party is scheduled to be on: <input id='date-input' type='datetime-local'></h2>
+        <input type='submit' value='Submit Date & Time' class='button' id='submit-datetime'>
+        <h2 class='scheduled-time'>This party is scheduled to be on: <b id='dateandtime'>Date and Time</b></h2>
     </div>
 </div>
 <script>

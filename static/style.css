@@ -164,6 +164,19 @@ html {
     width: 280px;
 }
 
+#datepicker {
+    text-align: center;
+}
+
+#dateandtime {
+    margin-left: 10px;
+}
+
+#submit-datetime {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 .interactive {
     display: flex;
     flex-direction: row;
@@ -182,12 +195,25 @@ html {
 
 .scheduler {
     position: relative;
-    top: -171px;
+    top: -117px;
+}
+
+#confirm-date {
+    margin-top: 10px;
+}
+
+#available-dates {
+    margin-bottom: 58px;
 }
 
 .left {
     position: relative;
     width: 300px;
+}
+
+.small {
+    font-size: 18px;
+    margin-bottom: 5px;
 }
 
 
@@ -374,6 +400,9 @@ input {
     background: white;
     padding: 0;
     border-radius: 20px;
+    position: relative;
+    left: -10px;
+    margin-top: 10px;
 }
 
 .time-button {
@@ -430,6 +459,7 @@ input {
     background: #f1f1f1;
     border: none;
     box-shadow: 0 6px #999;
+    margin: 10px 0px 0px 0px;
 }
 .arrowbutton:hover {
     background: #e0e0e0;
