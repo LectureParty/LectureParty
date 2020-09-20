@@ -48,14 +48,15 @@
                 
             </div>
         </div>
-        <button class='button startparty'>Start Party</button>
+        <a href='../partymeet/{{code}}'><button class='button startparty'>Start Party</button></a>
         <button class='button'>Party Notes</button>
     </div>
     <div class='box-display'>
-        <h1 class='content-title'>Scheduler</h1>
+        <h1 class='content-title' id='scheduler'>Scheduler</h1>
         <div class='interactive'>
             <div class='scheduler'>
-                <h2 class='scheduled-time'>Which days are you available? </h2>
+                <h1 class='content-title subtitle'>Available Dates</h1>
+                <p>Which days are you available? </p>
                 <form name="select-multiple">
                     <input id="multiple-date-select" class='left' name='dates'/>
                 </form>
@@ -63,6 +64,11 @@
                     var arr = [];
                     $('#multiple-date-select').multiDatesPicker({onSelect:function(datetext){
                 
+                        var date = datetext.split('/')[1];
+                        if (date.charAt(0) == '0') {
+                            date = String(date.charAt(1));
+                        } 
+
                         if(arr.includes(datetext)){
                             var table = document.getElementById('table-data');
                             var data = document.getElementById(datetext);
@@ -82,10 +88,142 @@
                  </script>
             </div>
             <div class='time-chart'>
-                interactive chart goes here
+                <form action='times' name="time-form" method="post">
+                    <h1 class='content-title subtitle'>Available Times</h1>
+                    <p>What times are you available on 9/19/20?</p>
+                    <div class='times-display' id='times-display'>
+                    </div>
+                    <input type='submit' class='button' value='Submit'>
+                </form>
             </div>
         </div>
         <h2 class='scheduled-time'>This party is scheduled to be on: <input id='date-input' type='datetime-local'></h2>
     </div>
 </div>
+<script>
+    var array = [ 0, 0, 0, 0, 0, 0,
+         0, 0, 0, 0, 0, 0,
+         0, 0, 0, 0, 0, 0,
+         0, 0, 0, 0, 0, 0 ];
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        var container = document.getElementById('times-display');
+    
+        var amButton1 = document.createElement('button');
+        amButton1.type = 'button';
+        amButton1.id = 'b1'
+        amButton1.innerHTML = "12:00 AM - 1:00 AM";
+        amButton1.className = 'time-button';
+        container.appendChild(amButton1);
+        amButton1.onclick = function changeClick() {
+            var button = document.getElementById('b1');
+            if(array[0] == 0) {
+                array[0] = 1;
+                button.style.backgroundColor = '#4eca7f';
+            }
+            else {
+                array[0] = 0;
+                button.style.backgroundColor = '#f1f1f1';
+            }
+        };;
+        
+        var pmButton2 = document.createElement('button');
+        pmButton2.type = 'button';
+        pmButton2.id = 'b12';
+        pmButton2.innerHTML = "12:00 PM - 1:00 PM";
+        pmButton2.className = 'time-button';
+        container.appendChild(pmButton2);
+        pmButton2.onclick = function changeClick() {
+            var button = document.getElementById('b12');
+            if(array[12] == 0) {
+                array[12] = 1;
+                button.style.backgroundColor = '#4eca7f';
+            }
+            else {
+                array[12] = 0;
+                button.style.backgroundColor = '#f1f1f1';
+            }
+        };
+        
+        var i;
+        for (i = 1; i < 11; i++) {
+            var amButton = document.createElement('button');
+            
+            amButton.type = 'button';
+            amButton.id = 'b' + (i).toString();
+            amButton.innerHTML = i.toString() + ":00 AM - " + (i+1).toString() + ":00 AM";
+            amButton.className = 'time-button';
+            container.appendChild(amButton);
+            amButton.onclick = function changeClick() {
+                let tmp=parseInt((this.id.substr(1)));
+                if(array[tmp] == 0) {
+                    array[tmp] = 1;
+                    this.style.backgroundColor = '#4eca7f';
+                }
+                else {
+                    array[tmp] = 0;
+                    this.style.backgroundColor = '#f1f1f1';
+                }
+            };;
+            
+            var pmButton = document.createElement('button');
+            pmButton.type = 'button';
+            pmButton.id = 'b' + (12+i).toString();
+            pmButton.innerHTML = i.toString() + ":00 PM - " + (i+1).toString() + ":00 PM";
+            pmButton.className = 'time-button';
+            container.appendChild(pmButton);
+            pmButton.onclick = function changeClick() {
+                let tmp=parseInt((this.id.substr(1)));
+                console.log(this.id)
+                if(array[tmp] == 0) {
+                    array[tmp] = 1;
+                    this.style.backgroundColor = '#4eca7f';
+                }
+                else {
+                    array[tmp] = 0;
+                    this.style.backgroundColor = '#f1f1f1';
+                }
+            };;
+        }
+        
+        var pmButton1 = document.createElement('button');
+        pmButton1.type = 'button';
+        pmButton1.id = 'b22';
+        pmButton1.innerHTML = "11:00 AM - 12:00 PM";
+        pmButton1.className = 'time-button'
+        container.appendChild(pmButton1);
+        pmButton1.onclick = function changeClick() {
+            let tmp=parseInt((this.id.substr(1)));
+            console.log(this.id)
+            if(array[tmp] == 0) {
+                array[tmp] = 1;
+                this.style.backgroundColor = '#4eca7f';
+            }
+            else {
+                array[tmp] = 0;
+                this.style.backgroundColor = '#f1f1f1';
+            }
+        };;
+        
+        var amButton2 = document.createElement('button');
+        amButton2.type = 'button';
+        amButton2.id = 'b23';
+        amButton2.innerHTML = "11:00 PM - 12:00 AM";
+        amButton2.className = 'time-button'
+        container.appendChild(amButton2);
+        amButton2.onclick = function changeClick() {
+            let tmp=parseInt((this.id.substr(1)));
+            console.log(this.id)
+            if(array[tmp] == 0) {
+                array[tmp] = 1;
+                this.style.backgroundColor = '#4eca7f';
+            }
+            else {
+                array[tmp] = 0;
+                this.style.backgroundColor = '#f1f1f1';
+            }
+        };;
+
+    }, false);
+</script>
 {% endblock %}

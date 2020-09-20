@@ -4,7 +4,46 @@
 {% endblock %}
 
 {% block content %}
-<div class-'jitsi-embed' id='jitsi-parent'>
+<div class='navbar'>
+    <img class='logo' src="{{ url_for('static', filename='lectureparty-logo.svg')}}"></img>
+    <h1 class='title'>LectureParty</h1>
+    <h2 class='description'>Watching Online Lectures, Together</h2>
+    <div class='options'>
+        <button class='navbar-button' onclick='switchJoinParty()'>Join Party</button>
+        <div class='dropdown joinparty' id='joinparty'>
+            <div class='dropdown-container'>
+                <div class='warning'>*warning here*</div>
+                <form class='form' method='post' action='../join_party'>
+                    <label for='join-code'>Code: </label>
+                    <input type='text' id='join-code' name='join-code'><br>
+                    <input type='submit' value='submit'>
+                </form>
+            </div>
+        </div>
+        <button class='navbar-button' onclick='switchCreateParty()'>Create Party</button>
+        <div class='dropdown createparty' id='createparty'>
+            <div class='dropdown-container'>
+                <div class='warning'>*warning here*</div>
+                <form class='form' method='post' action='../new_party'>
+                    <label for='create-name'>Lecture ID: </label>
+                    <input type='text' id='create-name' name='create-name'><br>
+                    <input type='submit' value='submit'>
+                </form>
+            </div>
+        </div>
+        <button class='navbar-button' onclick='window.location.href = "{{url_for('index')}}"'>My Parties</button>
+    </div>
+</div>
+
+<div class='jitsipage'>
+    <h2 class='jitsi-title'>{{name}}</h2>
+    <div align='center' class='full'>
+        <div class='jitsi-embed' id='jitsi-parent'></div>
+    </div>
+    <div class='jitsi-buttons'>
+        <button class='button startparty'>Go Back</button>
+        <button class='button'>Party Notes</button>
+    </div>
 </div>
 
 <style>
@@ -23,8 +62,8 @@ let parent_node = document.getElementById('jitsi-parent')
 let jitsi_options = {
     parentNode: parent_node,
     roomName: roomID,
-    width: '100%',
-    height: '40em',
+    width: '60%',
+    height: '400px',
     userInfo: {
         displayName: username,
     },

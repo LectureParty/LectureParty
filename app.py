@@ -117,7 +117,7 @@ def party(party_id):
 
 @app.route('/partymeet/<int:party_id>')
 def partymeet(party_id):
-    return render_template('party.html',**{'roomnumber':party_id, 'username': session['username']})
+    return render_template('party.html',**{'roomnumber':party_id, 'username': session['username'],'name':rooms[party_id]})
 
 @app.route('/addScreenshot', methods=['POST'])
 def add_sc():
