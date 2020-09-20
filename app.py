@@ -180,8 +180,10 @@ def scheduler(bigArray, cnt=None):
     for i in range(len(bigArray)):
         if bigArray[i] != 0:
             for j in range(len(bigArray[i])):
-                if bigArray[i][j]:
+                if bigArray[i][j]==1:
                     cnt[(i, j)] += 1
+    print(cnt)
+    print(bigArray)
     return cnt
 
 
