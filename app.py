@@ -118,9 +118,11 @@ def join_party():
 def party(party_id):
     if party_id in rooms:
         if len(lec_times[party_id].most_common())>0:
-            date,time=cnt.most_common(1)[0][0]
+            date,time=lec_times[party_id].most_common(1)[0][0]
+            print('Showing time immediately')
             return render_template('lecture-info.html',**{'name': rooms[party_id], 'code': party_id,'participants':ubr[party_id],'date':date,'time':time})
         else:
+            print('not showing time')
             return render_template('lecture-info.html',**{'name': rooms[party_id], 'code': party_id,'participants':ubr[party_id]})
     else:
         return 'Room not found.'
