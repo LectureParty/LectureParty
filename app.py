@@ -13,7 +13,6 @@ try:
     rbu=db['rooms_by_user']
     ubr=db['users_by_room']
     lectures=db['lectures']
-    
 except:
     db={'users': dict(),'rooms':dict(),'rooms_by_user':dict(),'users_by_room':dict(), 'lectures':dict()}
     users=db['users']
@@ -154,6 +153,11 @@ def date_info():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+@app.route('/review_lecture/<int:roomnumber>')
+def review_lecture():
+    messages = db['lectures'][roomnumber][1]
+    return render_template('review_lecture.html', **{'roomnumber':roomnumber, 'messages':messages})
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
