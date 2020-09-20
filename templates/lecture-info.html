@@ -75,6 +75,7 @@
     </div>
 </div>
 <script>
+    
     var bigArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     var array = [ 0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0,
@@ -247,7 +248,9 @@
         xmlhttp.setRequestHeader( "Content-Type", "application/json" );
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText)
+                var nums=JSON.parse(this.responseText);
+                var c_string=convert(nums[0],nums[1]);
+                document.getElementById("dateandtime").innerHTML=c_string;
            }
         };
         var sendData={"room":{{code}},"arr":bigArray};
@@ -281,5 +284,9 @@
             converted += "error";
         }
     }
+    {% if date is defined %}
+    var converted=convert({{date}},{{time}});
+    document.getElementById("dateandtime").innerHTML=converted;
+    {% endif %}
 </script>
 {% endblock %}
