@@ -155,7 +155,7 @@ def date_info():
     arr=content['arr']
     cnt=lec_times[room]
     scheduler(arr,cnt)
-    return str(set(cnt.most_common(1)[0]))
+    return str(list(cnt.most_common(1)[0][1]))
 
 @app.route('/log_out')
 def logout():
