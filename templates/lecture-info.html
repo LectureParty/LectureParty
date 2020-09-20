@@ -58,38 +58,40 @@
                 <h1 class='content-title subtitle' id='available-dates'>Available Dates</h1>
                 <label for='datepicker'>Select an available day: </label><br>
                 <input type='text' id='datepicker' class='left' name='date' placeholder='click to add a new date'><br>
-                <button class='button small' id='confirm-date'>Confirm Date</button>
+                <button class='button small' id='confirm-date' onclick='confirmDate()'>Confirm Date</button>
+                <div><label id='no-date' style='visibility:hidden'>No day chosen!</label></div>
             </div>
             <div class='time-chart'>
                 <h1 class='content-title subtitle'>Available Times</h1>
-                <div>
-                    <label id='time-picker'>What times are you available on 9/20/20?</label>
+                <div id='choose-times' style='visibility:hidden'>
+                    <label id=time-picker>What times are you available?</label>
                     <div class='times-display' id='times-display'></div>
-                    <button class='button small'>Confirm Time</button>
+                    <button class='button small' onclick='confirmTime()'>Confirm Time</button>
                 </div>
             </div>
         </div>
-        <input type='submit' value='Submit Date & Time' class='button' id='submit-datetime'>
+        <button class='button' id='submit-datetime' onclick='submitEverything()'>Submit Date and Time</button>
         <h2 class='scheduled-time'>This party is scheduled to be on: <b id='dateandtime'>Date and Time</b></h2>
     </div>
 </div>
 <script>
+    var bigArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     var array = [ 0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0 ];
     document.addEventListener('DOMContentLoaded', function() {
-        
+            
         var container = document.getElementById('times-display');
-    
+
         var amButton1 = document.createElement('button');
         amButton1.type = 'button';
-        amButton1.id = 'b1'
+        amButton1.id = 'b0'
         amButton1.innerHTML = "12:00 AM - 1:00 AM";
         amButton1.className = 'time-button';
         container.appendChild(amButton1);
         amButton1.onclick = function changeClick() {
-            var button = document.getElementById('b1');
+            var button = document.getElementById('b0');
             if(array[0] == 0) {
                 array[0] = 1;
                 button.style.backgroundColor = '#4eca7f';
@@ -99,7 +101,7 @@
                 button.style.backgroundColor = '#f1f1f1';
             }
         };;
-        
+
         var pmButton2 = document.createElement('button');
         pmButton2.type = 'button';
         pmButton2.id = 'b12';
@@ -117,11 +119,11 @@
                 button.style.backgroundColor = '#f1f1f1';
             }
         };
-        
+
         var i;
         for (i = 1; i < 11; i++) {
             var amButton = document.createElement('button');
-            
+
             amButton.type = 'button';
             amButton.id = 'b' + (i).toString();
             amButton.innerHTML = i.toString() + ":00 AM - " + (i+1).toString() + ":00 AM";
@@ -138,7 +140,7 @@
                     this.style.backgroundColor = '#f1f1f1';
                 }
             };;
-            
+
             var pmButton = document.createElement('button');
             pmButton.type = 'button';
             pmButton.id = 'b' + (12+i).toString();
@@ -147,7 +149,6 @@
             container.appendChild(pmButton);
             pmButton.onclick = function changeClick() {
                 let tmp=parseInt((this.id.substr(1)));
-                console.log(this.id)
                 if(array[tmp] == 0) {
                     array[tmp] = 1;
                     this.style.backgroundColor = '#4eca7f';
@@ -158,16 +159,15 @@
                 }
             };;
         }
-        
+
         var pmButton1 = document.createElement('button');
         pmButton1.type = 'button';
-        pmButton1.id = 'b22';
+        pmButton1.id = 'b11';
         pmButton1.innerHTML = "11:00 AM - 12:00 PM";
         pmButton1.className = 'time-button'
         container.appendChild(pmButton1);
         pmButton1.onclick = function changeClick() {
             let tmp=parseInt((this.id.substr(1)));
-            console.log(this.id)
             if(array[tmp] == 0) {
                 array[tmp] = 1;
                 this.style.backgroundColor = '#4eca7f';
@@ -177,7 +177,7 @@
                 this.style.backgroundColor = '#f1f1f1';
             }
         };;
-        
+
         var amButton2 = document.createElement('button');
         amButton2.type = 'button';
         amButton2.id = 'b23';
@@ -186,7 +186,6 @@
         container.appendChild(amButton2);
         amButton2.onclick = function changeClick() {
             let tmp=parseInt((this.id.substr(1)));
-            console.log(this.id)
             if(array[tmp] == 0) {
                 array[tmp] = 1;
                 this.style.backgroundColor = '#4eca7f';
@@ -198,5 +197,58 @@
         };;
 
     }, false);
+    
+    function confirmDate() {
+        let datepicker = document.getElementById('datepicker');
+        let date = datepicker.value;
+        let not_entered = document.getElementById('no-date');
+        if (date == '' || date == 'click to add a new date') {
+            not_entered.style.visibility = 'visible';
+        }
+        else {
+            let label = document.getElementById('time-picker');
+            label.innerHTML = 'What times are you available on ' + date + '?';
+            if (not_entered.style.visibility == 'visible')
+               not_entered.style.visibility = 'hidden'; 
+            document.getElementById('choose-times').style.visibility = 'visible';
+        }
+    }
+
+    function confirmTime() {
+        let datepicker = document.getElementById('datepicker');
+        let date = datepicker.value.substring(3,5);
+        let index = -1;
+        if (date == '30') {
+            index = 10;
+        }
+        else {
+            index = parseInt(date.substring(1));
+        }
+        bigArray[index] = array;
+        array = [ 0, 0, 0, 0, 0, 0,
+         0, 0, 0, 0, 0, 0,
+         0, 0, 0, 0, 0, 0,
+         0, 0, 0, 0, 0, 0 ];
+
+        var buttons_for_time = document.getElementsByClassName('time_button');
+        var k;
+        for(k = 0; k < buttons_for_time.length; k++) {
+            buttons_for_time[k].style.backgroundColor = '#f1f1f1';
+        }
+        document.getElementById('choose-times').style.visibility = 'hidden';
+        console.log(bigArray);
+
+        datepicker.value = '';
+    }
+
+    function submitEverything() {
+        xmlhttp = new XMLHttpRequest;
+        xmlhttp.open( "POST", "/date_info");
+        xmlhttp.setRequestHeader( "Content-Type", "application/json" );
+        xmlhttp.send(bigArray); 
+
+        var sendData={"room":{{code}},"arr":bigArray}
+        JSON.stringify(sendData)
+    }
 </script>
 {% endblock %}
