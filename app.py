@@ -4,7 +4,7 @@ import pickle
 import random
 from datetime import datetime
 from collections import Counter
-from scheduler import scheduler
+import scheduler
 
 db={}
 users,rooms,rbu,ubr,lectures,lec_times=None,None,None,None,None,None
@@ -155,7 +155,7 @@ def date_info():
     room=content['room']
     arr=content['arr']
     cnt=lec_times[room]
-    scheduler(arr,cnt)
+    scheduler.scheduler(arr,cnt)
     return set(cnt.most_common(1)[0])
 
 @app.route('/log_out')
