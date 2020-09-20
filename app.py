@@ -13,6 +13,7 @@ try:
     rbu=db['rooms_by_user']
     ubr=db['users_by_room']
     lectures=db['lectures']
+    
 except:
     db={'users': dict(),'rooms':dict(),'rooms_by_user':dict(),'users_by_room':dict(), 'lectures':dict()}
     users=db['users']
@@ -139,11 +140,14 @@ def add_sc():
 def set_meeting_start():
     roomID = int(request.form.get('roomID'))
     start_time = datetime.now()
-
     db['lectures'][roomID] = (start_time, [])
     print(db['lectures'])
-
     return '200'
+
+@app.route('/date_info')
+def date_info():
+    content=request.get_json()
+    print(content)
 
 @app.route('/log_out')
 def logout():
