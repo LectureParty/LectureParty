@@ -490,11 +490,13 @@ input {
     justify-content: space-between;
     margin-bottom: 40px;
     width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .spaceleft {
-    margin-left: 50px;
 }
+
 
 .ver {
     display: flex;
