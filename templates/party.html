@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class='navbar'>
-    <img class='logo' src='./lectureparty-logo.svg'></img>
+    <img class='logo' src="{{ url_for('static', filename='lectureparty-logo.svg')}}"></img>
     <h1 class='title'>LectureParty</h1>
     <h2 class='description'>Watching Online Lectures, Together</h2>
     <div class='options'>
