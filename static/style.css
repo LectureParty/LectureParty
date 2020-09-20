@@ -492,3 +492,8 @@ input {
     display: flex;
     flex-direction: column;
 }
+
+.message {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
