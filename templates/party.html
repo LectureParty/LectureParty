@@ -41,8 +41,8 @@
         <div class='jitsi-embed' id='jitsi-parent'></div>
     </div>
     <div class='jitsi-buttons'>
-        <button class='button startparty'>Go Back</button>
-        <button class='button'>Party Notes</button>
+         <a href='../party/{{code}}'><button class='button startparty'>Go Back</button></a>
+         <a href='../review_lecture/{{code}}'><button class='button'>Party Notes</button></a>
     </div>
 
 <video id="vidTag" class="vidTag"></video>
@@ -143,7 +143,7 @@ jitsi_api.addListener('outgoingMessage', ({message: message}) => {
 
 		let formData = new FormData()
 		formData.append('roomID', roomID)
-		formData.append('message', username + ' ' + message)
+		formData.append('message', username + ': ' + message)
 		formData.append('img', dataURL)
 		xhttp.send(formData)
 	}
