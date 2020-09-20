@@ -260,12 +260,12 @@
     }
     
     function convert(date, time) {
-        let converted = '';
+        let converted = "";
         if (date < 10) {
-            converted += '09/2' + date.toString() + '/2020';
+            converted += "09/2" + date.toString() + "/2020";
         }
         else {
-            converted += '09/30/2020';
+            converted += "09/30/2020";
         }
         converted += ", ";
         if (time == 0) {
@@ -283,6 +283,7 @@
         else {
             converted += "error";
         }
+        return converted;
     }
     {% if date is defined %}
     var converted=convert({{date}},{{time}});
