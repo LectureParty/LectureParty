@@ -44,12 +44,23 @@
         <button class='button startparty'>Go Back</button>
         <button class='button'>Party Notes</button>
     </div>
+
+<video id="vidTag" class="vidTag"></video>
+<canvas id="canvas" class="canvas"></canvas>
 </div>
 
 <style>
 .jitsi-embed {
     width: 100%;
     height: 100%;
+}
+
+.vidTag {
+	display: none;
+}
+
+.canvas {
+	display: none;
 }
 </style>
 
@@ -63,7 +74,7 @@ let jitsi_options = {
     parentNode: parent_node,
     roomName: roomID,
     width: '60%',
-    height: '400px',
+    height: '720px',
     userInfo: {
         displayName: username,
     },
@@ -74,53 +85,71 @@ let jitsi_api = new JitsiMeetExternalAPI("mikail-khan.com", jitsi_options)
 let local_user_id = null
 
 let videoStream = null
-let vidTag = document.createElement('video')
-let canvas = document.createElement('canvas')
+let vidTag = document.getElementById('vidTag')
 
-function startCapture(displayMediaOptions) {
-    let captureStream = null;
+let canvas = document.getElementById('canvas')
+canvas.width = 1280
+canvas.height = 720
 
-    return navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
-        .catch(err => { console.error("Error:" + err); return null; });
+const displayMediaOptions = {
+	video: {
+		cursor: "always"
+	},
+	audio: false
+};
+
+async function startCapture() {
+	try {
+		vidTag.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+	} catch(err) {
+		console.error("Error: " + err);
+	}
 }
 
-jitsi_api.addListener('videoConferenceJoined', 
-    console.log("capturing screen")
-    ({roomName: room_name, id: user_id, displayName: display_name, avatarURL: url}) => {
-        local_user_id = user_id
-    }
+jitsi_api.addListener('videoConferenceJoined', () => { 
+	console.log("capturing screen")
+	//({roomName: room_name, id: user_id, displayName: display_name, avatarURL: url}) => {
+		//    local_user_id = user_id
+		//}
 
-    videoStream = startCapture()
-    vidTag.srcObject = videoStream 
-)
+	videoStream = startCapture(displayMediaOptions)
+	vidTag.srcObject = videoStream 
+})
 
 jitsi_api.addListener('incomingMessage', ({from: id, nick: name, message: message}) => {
-    console.log(id, name, message)
+	console.log(id, name, message)
 })
 
 jitsi_api.addListener('outgoingMessage', ({message: message}) => {
-    console.log("sent message: ", message)
-    if (message === "!startRecording") {
-        console.log("Started Recording")
-        jitsi_api.executeCommand('setLargeVideoParticipant', local_user_id)
+	console.log("sent message: ", message)
+	if (message === "!startRecording") {
+		console.log("Started Recording")
+		vidTag.play()
 
-        // send start time to flask server
-        let xhttp = new XMLHttpRequest();
-        xhttp.open('POST', '/meetingStart', true)
-        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        xhttp.send(`roomID=${roomID}`)
-    } else if (message === "!stopRecording") {
-        // ¯\_(ツ)_/¯
-    }
+		// send start time to flask server
+		let xhttp = new XMLHttpRequest();
+		xhttp.open('POST', '/meetingStart', true)
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+		xhttp.send(`roomID=${roomID}`)
+	} else if (message === "!stopRecording") {
+		// ¯\_(ツ)_/¯
+	}
 
-    jitsi_api.captureLargeVideoScreenshot().then(dataURL => {
-        console.log("screenshot taken")
-        // send screenshot to server w/ username, room id, etc.
-        let xhttp = new XMLHttpRequest();
-        xhttp.open('POST', '/addScreenshot', true)
-        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        xhttp.send(`roomID=${roomID}&message=${message}&img=${dataURL}`)
-    })
+	let dataURL = screenshot()
+	console.log("screenshot taken")
+	console.log(dataURL)
+	// send screenshot to server w/ username, room id, etc.
+	let xhttp = new XMLHttpRequest();
+	xhttp.open('POST', '/addScreenshot', true)
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+	xhttp.send(`roomID=${roomID}&message=${message}&img=${dataURL}`)
 })
+
+function screenshot() {
+let ctx = canvas.getContext('2d')
+ctx.drawImage(vidTag, 0, 0, 1280, 720)
+
+return canvas.toDataURL('image/jpeg')
+}
 </script>
 {% endblock %}

@@ -124,7 +124,7 @@ def partymeet(party_id):
 @app.route('/addScreenshot', methods=['POST'])
 def add_sc():
     image_data = request.form.get('img')
-    roomID = request.form.get('roomID')
+    roomID = int(request.form.get('roomID'))
     message = request.form.get('message')
     current_time = datetime.now()
 
@@ -137,10 +137,10 @@ def add_sc():
 
 @app.route('/meetingStart', methods=['POST'])
 def set_meeting_start():
-    roomID = request.form.get('roomID')
+    roomID = int(request.form.get('roomID'))
     start_time = datetime.now()
 
-    db['lectures'][int(roomID)] = (start_time, [])
+    db['lectures'][roomID] = (start_time, [])
     print(db['lectures'])
 
     return '200'
