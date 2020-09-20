@@ -52,6 +52,8 @@ def auth():
         if users[u]==p:
             session['username']=u
             return redirect(url_for('index'))
+        else:
+            return redirect(url_for('login',error=True))
     else:
         return redirect(url_for('login',error=True))
     
