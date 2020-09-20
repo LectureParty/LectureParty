@@ -3,9 +3,11 @@ from flask_socketio import SocketIO
 import pickle
 import random
 from datetime import datetime
+from collections import Counter
+from scheduler import scheduler
 
 db={}
-users,rooms,rbu,ubr,lectures=None,None,None,None,None
+users,rooms,rbu,ubr,lectures,lec_times=None,None,None,None,None,None
 try:
     db=pickle.load(open('data.pkl','rb'))
     users=db['users']
@@ -13,13 +15,15 @@ try:
     rbu=db['rooms_by_user']
     ubr=db['users_by_room']
     lectures=db['lectures']
+    lec_times=db['ltimes']
 except:
-    db={'users': dict(),'rooms':dict(),'rooms_by_user':dict(),'users_by_room':dict(), 'lectures':dict()}
+    db={'users': dict(),'rooms':dict(),'rooms_by_user':dict(),'users_by_room':dict(), 'lectures':dict(),'ltimes':dict()}
     users=db['users']
     rooms=db['rooms']
     rbu=db['rooms_by_user']
     ubr=db['users_by_room']
     lectures=db['lectures']
+    lec_times=db['ltimes']
 
 # lectures[roomID] = (start_time, [(timestamp, message, screenshot)])
 
@@ -91,6 +95,7 @@ def new_party():
     ubr[room_id]=list()
     ubr[room_id].append(session['username'])
     rooms[room_id]=name
+    lec_times[room_id]=Counter()
     pickle.dump(db,open('data.pkl','wb'))
     return redirect(url_for('party',party_id=room_id))
 
@@ -131,8 +136,8 @@ def add_sc():
     if roomID in db['lectures']:
         start_time, messages = db['lectures'][roomID]
         messages.append((current_time - start_time, message, image_data))
-
-    print(messages)
+    #pickle.dump(db,open('data.pkl','wb'))
+    print('message received')
     return '200'
 
 @app.route('/meetingStart', methods=['POST'])
@@ -140,14 +145,18 @@ def set_meeting_start():
     roomID = int(request.form.get('roomID'))
     start_time = datetime.now()
     db['lectures'][roomID] = (start_time, [])
-    print(db['lectures'])
+    pickle.dump(db,open('data.pkl','wb'))
+    print('recording start')
     return '200'
 
 @app.route('/date_info', methods=['POST'])
 def date_info():
     content=request.get_json()
-    print(content)
-    return 'hi'
+    room=content['room']
+    arr=content['arr']
+    cnt=lec_times[room]
+    scheduler(arr,cnt)
+    return set(cnt.most_common(1)[0])
 
 @app.route('/log_out')
 def logout():
