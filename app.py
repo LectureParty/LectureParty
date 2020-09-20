@@ -148,6 +148,7 @@ def set_meeting_start():
 def date_info():
     content=request.get_json()
     print(content)
+    return 'hi'
 
 @app.route('/log_out')
 def logout():
