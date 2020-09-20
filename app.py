@@ -171,7 +171,8 @@ def logout():
 @app.route('/review_lecture/<int:roomnumber>')
 def review_lecture(roomnumber):
     messages = db['lectures'][roomnumber][1]
-    return render_template('review_lecture.html', **{'roomnumber':roomnumber, 'messages':messages})
+    roomname = db['rooms'][roomnumber]
+    return render_template('review_lecture.html', **{'roomname':roomname, 'messages':messages})
 
 def scheduler(bigArray, cnt=None):
     if cnt == None:
@@ -186,6 +187,3 @@ def scheduler(bigArray, cnt=None):
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
-    
-    
-    

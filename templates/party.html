@@ -136,11 +136,16 @@ jitsi_api.addListener('outgoingMessage', ({message: message}) => {
 	} else {
 		let dataURL = screenshot()
 		console.log("screenshot taken")
+		// console.log(dataURL)
 		// send screenshot to server w/ username, room id, etc.
 		let xhttp = new XMLHttpRequest();
 		xhttp.open('POST', '/addScreenshot', true)
-		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-		xhttp.send(`roomID=${roomID}&message=${message}&img=${dataURL}`)
+
+		let formData = new FormData()
+		formData.append('roomID', roomID)
+		formData.append('message', message)
+		formData.append('img', dataURL)
+		xhttp.send(formData)
 	}
 })
 

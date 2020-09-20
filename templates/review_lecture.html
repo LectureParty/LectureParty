@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Lecture Review{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class='navbar'>
+    <img class='logo' src="{{ url_for('static', filename='lectureparty-logo.svg')}}"></img>
+    <h1 class='title'>LectureParty</h1>
+    <h2 class='description'>Watching Online Lectures, Together</h2>
+</div>
+
+<div style='text-align: center'>
+	<h2>{{roomname}} review</h2>
+	<br>
+	{% for timestamp, message, image in messages %}
+		<div style='text-align: center'> 
+			{{timestamp}} 
+			<br>
+			{{message}} 
+		</div>
+		<img src='{{image}}'/>
+		<br>
+	{% endfor %}
+</div>
+{% endblock %}
