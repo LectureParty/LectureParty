@@ -133,16 +133,15 @@ jitsi_api.addListener('outgoingMessage', ({message: message}) => {
 		xhttp.send(`roomID=${roomID}`)
 	} else if (message === "!stopRecording") {
 		// ¯\_(ツ)_/¯
+	} else {
+		let dataURL = screenshot()
+		console.log("screenshot taken")
+		// send screenshot to server w/ username, room id, etc.
+		let xhttp = new XMLHttpRequest();
+		xhttp.open('POST', '/addScreenshot', true)
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+		xhttp.send(`roomID=${roomID}&message=${message}&img=${dataURL}`)
 	}
-
-	let dataURL = screenshot()
-	console.log("screenshot taken")
-	console.log(dataURL)
-	// send screenshot to server w/ username, room id, etc.
-	let xhttp = new XMLHttpRequest();
-	xhttp.open('POST', '/addScreenshot', true)
-	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-	xhttp.send(`roomID=${roomID}&message=${message}&img=${dataURL}`)
 })
 
 function screenshot() {
