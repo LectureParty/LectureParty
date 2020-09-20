@@ -355,9 +355,14 @@ input {
 
 /* time scheduler */
 
+#scheduler {
+    margin-bottom: 0;
+}
+
 .subtitle {
     font-weight: 500;
     font-size: 28px;
+    margin-top: 0;
 }
 
 .times-display {
