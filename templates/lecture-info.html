@@ -64,6 +64,11 @@
                     var arr = [];
                     $('#multiple-date-select').multiDatesPicker({onSelect:function(datetext){
                 
+                        var date = datetext.split('/')[1];
+                        if (date.charAt(0) == '0') {
+                            date = String(date.charAt(1));
+                        } 
+
                         if(arr.includes(datetext)){
                             var table = document.getElementById('table-data');
                             var data = document.getElementById(datetext);
